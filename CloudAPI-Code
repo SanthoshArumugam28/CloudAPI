@@ -116,8 +116,8 @@
 011600210816                                                                                                    
 011700210816                //Destroy a transport object.                                                       
 011800190222                 axiscTransportDestroy(wfHandle) ;                                                  
-011900190205                 If not %Open(PMPRPGRF);                                                            
-012000190205                    Open PMPRPGRF ;                                                                 
+011900190205                 If not %Open(Table);                                                            
+012000190205                    Open Table ;                                                                 
 012100190204                 ENDIF ;                                                                            
 012200190212              dsVal = wfResponse  ;                                                                 
 012300190212              wfResponses = '''' + wfResponse + '''' ;                                              
@@ -162,7 +162,10 @@
 016200190204     C/Exec sql                                                                                     
 016300210817     C+ Delete from Table                                                                           
 016400190204     C/END-EXEC                                                                                     
-016500210816                                                                                                    
+016500210816        
+011900190205                 If  %Open(Table);                                                            
+012000190205                    Close Table ;                                                                 
+012100190204                 ENDIF ;  
 016600210816        // Process the values fetched from Cloud API                                                
 016700190203          Endif ;                                                                                   
 016800190225             *INRT = *On ;                                                                          
